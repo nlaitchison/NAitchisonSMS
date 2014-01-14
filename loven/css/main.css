@@ -1,0 +1,180 @@
+/* ---------------------------------------------------------------------------------------------------
+
+-----Info
+
+Loven
+Designer/Developer: Nicole Aitchison
+Full Sail University SMS 1401
+
+-----Color Swatch
+
+Dark Yellow: f7f5da
+Light Yellow: faf9f1
+Dark Turquoise: 4db794
+Light Turquoise: 95e6cb
+Red: eb4d4d
+Brown: 915f52
+
+-----Sections
+
+∆ General
+∆ Home
+
+
+----------------------------------------------------------------------------------------------------*/
+
+
+/* ---------------------------------------------------------------------------------------------------
+		∆ General
+---------------------------------------------------------------------------------------------------*/
+
+
+html,body,div,form,fieldset,legend,label,h1,h2,h3,h4,h5,h6,p,ul,dl,dt,dd,figure,figcaption {
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font: 14px Helvetica; 
+	color: #915f52;
+	background: #faf9f1 url('../images/sprinkles-bg.png') repeat-x;
+}
+
+h1{
+	font: 22px 'Bree Serif', serif;
+	color: #eb4d4d;
+	padding: 10px 15px; 
+}
+
+p{
+	font: 0.875em/19px Helvetica;
+	padding: 0 15px 10px;
+
+}
+
+a:hover{
+	text-decoration: underline;
+/*	opacity: .6;*/
+}
+
+
+ul{
+	list-style-type: none;
+}
+
+li{
+	float: left;
+}
+
+.button{
+	background: #95e6cb;
+	color: #4db794;
+	font:  16px 'Bree Serif', serif;
+	border-radius: 4px;
+	border: none;
+	padding: 4px 6px;
+	float: right;
+	margin: 10px 15px;
+}
+
+.clear_fix{
+	clear:both;
+}
+
+#main_content{
+	margin: 20px auto 40px; 
+}
+
+
+/* ---------------------------------------------------------------------------------------------------
+		∆ Home
+---------------------------------------------------------------------------------------------------*/
+
+
+header{
+	background: #f7f5da;
+	padding: 25px 0;
+}
+
+.logo{
+	float: left;
+}
+
+nav{
+	color: #EB4D4D;
+    float: right;
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 70px;
+}
+
+li.pipe{
+	width: 25px;
+	text-align: center;
+	color: #915f52;
+}
+
+
+#video_container, #video_info ,#video_add_comment, #video_comments ,#suggested_videos{
+	background: #f7f5da;
+	border-radius: 4px;
+	margin-top: 20px; 
+	padding: 0 0 10px;
+}
+
+textarea.comment_input{
+	margin: 0 15px;
+	padding: 10px;
+	max-width: 570px;
+	min-width: 570px;
+	min-height: 70px;
+	max-height: 70px;
+	border: none;
+	background: #faf9f1;
+	border-radius: 4px;
+	font: 14px Helvetica; 
+	color: #915f52;
+	
+}
+
+.comment:first-child{
+	padding-top: 15px; 
+}
+
+.comment_border{
+	background-color: #95e6cb;
+	width: 590px;
+	height: 1px;
+	margin: 10px 15px 15px;
+}
+
+.comment_user{
+	color: #eb4d4d;
+	font-size: 15px; 
+	padding-right: 5px;
+}
+
+.comment_date{
+	font-style: italic;
+}
+
+.print_icon{
+	margin-right: 8px;
+}
+
+.print{
+	line-height: 28px;
+}
+
+#video_info ul{
+	clear: both;
+	padding: 5px 15px 0;
+}
+
+.video_placeholder{
+	padding: 15px 15px 0;
+}
+
+
+
+
