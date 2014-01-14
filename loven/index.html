@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>loven | learn to bake</title>
+		<title>Loven | Learn to Bake, Love to Bake!</title>
 		<meta charset="utf-8" />
 
 		<!-- CSS -->
@@ -21,11 +21,26 @@
 					<img src="images/logo.png" alt="loven logo" class="logo">
 					<nav>
 						<ul>
-							<li> <a>login</a></li>
+							<li> <a href="#" class="facebook">facebook login</a></li>
 							<li class="pipe">|</li>
-							<li> <a>sign up</a></li>
+							<li> <a href="#" class="github">github login</a></li>
+							<li class="pipe">|</li>
+							<li> <a href="#">sign up</a></li>
 						</ul>
 					</nav>
+				</div>
+
+				<div id="login_forms" class="container">
+					<form id="fb_login">
+						<input class="login_email" type="text" placeholder="email address" required="required" name="login_email">
+						<input class="login_password" type="password" required="required" placeholder="password" name="login_password">
+						<input id="fb_login_submit" type="submit" name="login" value="FACEBOOK LOGIN" class="button">
+					</form>
+					<form id="gh_login">
+						<input class="login_email" type="text" placeholder="email" required="required" name="login_email">
+						<input class="login_password" type="password" required="required" placeholder="password" name="login_password">
+						<input id="gh_login_submit" type="submit" name="login" value="GITHUB LOGIN" class="button">
+					</form>
 				</div>
 			</header>
 
@@ -34,11 +49,19 @@
 				<div id="left_container" class="two-thirds column">
 
 					<section id="video_container">
-						<img src="images/video-placeholder.png" class="video_placeholder">
+						 <div class="video">
+							 <div id="flashContent">
+					            <script type="text/javascript">
+					                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");
+					                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" );
+					            </script>
+					        </div>
+							<!-- <img src="images/video-placeholder.png" class="video"> -->
+							</div>
 						<div id="video_controls">
 							<ul>
-								<li><img src="images/play-icon.png"></li>
-								<li class="scrubber"><img src="images/bar-icon.png"></li>
+								<li class="play_btn"><img src="images/play-icon.png"></li>
+								<li class="video_scrubber"><img src="images/bar-icon.png"></li>
 								<li><img src="images/volume-icon.png"></li>
 								<li><img src="images/mic-icon.png"></li>
 								<li><img src="images/camera-icon.png"></li>
@@ -50,9 +73,7 @@
 					<section id="video_add_comment">
 						<h1>Add a Comment</h1>
 						<form class="comment_from">
-							<textarea class="comment_input">
-								Add a comment...
-							</textarea>
+							<textarea class="comment_input"></textarea>
 							<button class="button comment_submit">COMMENT</button>
 						</form>
 						<div class="clear_fix"></div>
@@ -86,9 +107,7 @@
 
 					<section id="video_info">
 						<h1>Strawberry Cupcakes</h1>
-						<p> Cupcake ipsum dolor. Sit amet tiramisu powder unerdwear.com jelly beans. Cake bear claw pie chocolate cake bear claw lollipop powder bear claw. Ice cream dessert gummies candy I love. Jelly beans I love applicake caramels croissant topping chocolate bar marshmallow. Bonbon topping I love applicake. Gingerbread danish jujubes jelly wafer carrot cake. </p>
-						<!-- <button class="button">RECIPE</button>
-						<button class="button">INGREDIENTS</button> -->
+						<p> Loven is an eLearning site for baking. The name comes from the combination of love and oven - oven represents baking. Loven provides simple, easy to understand how-to videos for baking almost any sweet treat you could ever crave. Each video will have a printable shopping list of the ingredients and recipe. Cupcake ipsum dolor. Sit amet tiramisu powder unerdwear.com jelly beans. Cake bear claw pie chocolate cake bear claw lollipop powder bear claw.  </p>
 						<ul>
 							<li><img src="images/print-icon.png" class="print_icon"></li>
 							<li><a class="print">Print Recipe</a></p></li>
@@ -111,9 +130,11 @@
 
 		</div> <!-- end wrapper -->
 
-		<!-- Javascript 
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/main.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- Javascript -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/swfobject.js"></script>
+        <script type="text/javascript" src="js/sms_setup.js"></script> 
+        <script type="text/javascript" src="js/main.js"></script>
 
 	</body>
 </html>
