@@ -215,6 +215,13 @@ textarea.comment_input{
 
 #video_controls li.video_scrubber{
 	width: 390px;
+	position: relative;
+}
+
+#video_controls li img.scrubber_icon{
+	position: absolute;
+    top: 0;
+    left: 8px;
 }
 
 

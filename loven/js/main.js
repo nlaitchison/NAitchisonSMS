@@ -1,55 +1,108 @@
 // VIDEO STREAMING ----------------------------------------------------------------------------------------------------
-
-
-	var play = false;
 	
-	var flashReady = function(){
+	var connectPlay = false;
+	var initialPlay = false;
+	var currentlyPlaying = false;
 
-		// CONNECT 
-               
+    var dur = 0;
+    var seek = 0;
+    var xPos = 0;
+    var width = 374;
+	
+	var flashReady = function(){    
 
-         console.log('ran ');
-        flash.connect('rtmp://localhost/SMSServer');
+        console.log('ran');
 
-               
+        $(".play_btn").on('click', function(){
+
+           if(connectPlay === false){
+                flash.connect('rtmp://localhost/SMSServer');  
+            }
+            else{
+                playVideo();
+            }
+
+        });          
 
     };
 
-     var connected = function(success,error){
+	var connected = function(success,error){
 
-     		console.log(success, 'success');
-        	// PLAY VIDEO 
+ 		console.log(success, 'success');
 
-	        $(".play_btn").on('click', function(){
+        connectPlay = true;
 
-	        	if(play === false){
+        if(connectPlay === true){
+            playVideo();
+        }
 
-	        		play = true;
-	        		$('.play_btn').empty();
-	        		$('.play_btn').append('<img src="images/pause-icon.png">');
+    }; 
 
-	        		flash.startPlaying('hobbit_vp6.flv');
+    var getDuration = function(duration){
 
-	        	}else{
+        dur = duration;
 
-	        		play = false;
-	        		$('.play_btn').empty();
-	        		$('.play_btn').append('<img src="images/play-icon.png">');
-	        		flash.stopPlaying();
+    };
 
-	        	}
-	        	
-	        	console.log('play: ', play);
+    var seekTime = function(time){
 
-	        });
+        seek = time;
 
-        }; 
+        if(currentlyPlaying === true){
+            getXPos();
+        }
 
-      var globalError = function(msg)
-      {
+    };
 
-      	console.log('msg',msg);
-      }
+    // PLAY FUNCTION ------------------------------
+
+    var playVideo = function(){
+
+            if(initialPlay === false){
+
+                initialPlay = true;
+                currentlyPlaying = true;
+                $('.play_btn').empty();
+                $('.play_btn').append('<img src="images/pause-icon.png">');
+
+                flash.startPlaying('hobbit_vp6.flv');
+
+            }else if(currentlyPlaying === false && initialPlay === true){
+
+                currentlyPlaying = true;
+                $('.play_btn').empty();
+                $('.play_btn').append('<img src="images/pause-icon.png">');
+
+                flash.playPause();
+
+            }else{
+
+                currentlyPlaying = false;
+                $('.play_btn').empty();
+                $('.play_btn').append('<img src="images/play-icon.png">');
+                flash.playPause();
+
+            }
+
+            console.log('play: ', currentlyPlaying);
+
+    };
+
+    var getXPos = function(){
+
+        xPos = (seek / dur) * width;
+        $('.scrubber_icon').css('left', xPos + 8);
+
+
+    };
+
+
+    // var globalError = function(msg)
+    // {
+
+    //  console.log('msg',msg);
+
+    // };
 
 
 // MAIN ----------------------------------------------------------------------------------------------------
@@ -57,7 +110,7 @@
 
 $(function(){
 
-	// LOGIN CLICK FUNCTIONS 
+	// LOGIN CLICK FUNCTIONS ------------------------------
 
 	var fbLogin = false;
 	var ghLogin = false;
