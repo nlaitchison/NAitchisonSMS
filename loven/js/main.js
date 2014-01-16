@@ -6,35 +6,50 @@
 	var flashReady = function(){
 
 		// CONNECT 
-                
-        flash.connect('rtmp://localhost:5080/SMSServer');
+               
 
+         console.log('ran ');
+        flash.connect('rtmp://localhost/SMSServer');
 
-        // PLAY VIDEO 
-
-        $(".play_btn").on('click', function(){
-
-        	flash.startPlaying('hobbit_vp6.flv');
-
-        	if(play === false){
-
-        		play = true;
-        		$('.play_btn').empty();
-        		$('.play_btn').append('<img src="images/pause-icon.png">');
-
-        	}else{
-
-        		play = false;
-        		$('.play_btn').empty();
-        		$('.play_btn').append('<img src="images/play-icon.png">');
-
-        	}
-        	
-        	console.log('play: ', play);
-
-        });
+               
 
     };
+
+     var connected = function(success,error){
+
+     		console.log(success, 'success');
+        	// PLAY VIDEO 
+
+	        $(".play_btn").on('click', function(){
+
+	        	if(play === false){
+
+	        		play = true;
+	        		$('.play_btn').empty();
+	        		$('.play_btn').append('<img src="images/pause-icon.png">');
+
+	        		flash.startPlaying('hobbit_vp6.flv');
+
+	        	}else{
+
+	        		play = false;
+	        		$('.play_btn').empty();
+	        		$('.play_btn').append('<img src="images/play-icon.png">');
+	        		flash.stopPlaying();
+
+	        	}
+	        	
+	        	console.log('play: ', play);
+
+	        });
+
+        }; 
+
+      var globalError = function(msg)
+      {
+
+      	console.log('msg',msg);
+      }
 
 
 // MAIN ----------------------------------------------------------------------------------------------------
