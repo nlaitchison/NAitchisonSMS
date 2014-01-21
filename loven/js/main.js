@@ -1,8 +1,20 @@
-// VIDEO STREAMING ----------------------------------------------------------------------------------------------------
+// VIDEO PLAYER ----------------------------------------------------------------------------------------------------
 	
-	var connectPlay = false;
+	var nowConnected = false;
+
+    var clickedPlay = false;
 	var initialPlay = false;
 	var currentlyPlaying = false;
+
+    var clickedMic = false;
+    var showMic = false;
+    var clickedCam = false;
+    var showCam = false;
+    var clickedRec = false;
+    var currentlyRec = false;
+
+    var selectedMic = 0;
+    var selectedCam = 0;
 
     var dur = 0;
     var seek = 0;
@@ -11,30 +23,87 @@
 	
 	var flashReady = function(){    
 
-        console.log('ran');
-
         $(".play_btn").on('click', function(){
 
-           if(connectPlay === false){
+            clickedPlay = true;
+
+           if(nowConnected === false){
                 flash.connect('rtmp://localhost/SMSServer');  
             }
             else{
                 playVideo();
-            }
+            };
 
-        });          
+        }); 
+
+        $(".mic_btn").on('click', function(){
+
+            clickedMic = true;
+
+           if(nowConnected === false){
+                flash.connect('rtmp://localhost/SMSServer');  
+            }
+            else{
+                showMicrophones();
+            };
+
+        });   
+
+        $(".camera_btn").on('click', function(){
+
+            clickedCam = true;
+
+           if(nowConnected === false){
+                flash.connect('rtmp://localhost/SMSServer');  
+            }
+            else{
+                showCameras();
+            };
+
+        });  
+
+        $(".rec_btn").on('click', function(){
+
+            clickedRec = true;
+
+           if(nowConnected === false){
+                flash.connect('rtmp://localhost/SMSServer');  
+            }
+            else{
+                record();
+            };
+
+        });               
 
     };
 
 	var connected = function(success,error){
 
- 		console.log(success, 'success');
+ 		console.log('connected', success);
 
-        connectPlay = true;
+        nowConnected = true;
 
-        if(connectPlay === true){
-            playVideo();
-        }
+        if(nowConnected === true ){
+
+            if(clickedPlay === true){
+
+                playVideo();
+
+            }else if(clickedMic === true){
+
+                showMicrophones();
+
+            }else if(clickedCam === true){
+
+                showCameras();
+
+            }else if(clickedRec === true){
+
+                record();
+
+            }
+            
+        };
 
     }; 
 
@@ -49,8 +118,8 @@
         seek = time;
 
         if(currentlyPlaying === true){
-            getXPos();
-        }
+            moveScrubber();
+        };
 
     };
 
@@ -82,20 +151,147 @@
                 $('.play_btn').append('<img src="images/play-icon.png">');
                 flash.playPause();
 
-            }
+            };
+
+            if(showMic === true){
+
+                $('li.mic_btn ul.options').empty();
+                showMic = false;
+
+            };
+
+            if(showCam === true){
+
+              $('li.camera_btn ul.options').empty();
+              showCam = false;
+
+            };
 
             console.log('play: ', currentlyPlaying);
 
     };
 
-    var getXPos = function(){
+
+    // SCRUBBER FUNCTION ------------------------------
+
+    var moveScrubber = function(){
 
         xPos = (seek / dur) * width;
         $('.scrubber_icon').css('left', xPos + 8);
-
+        // $('.scrubber_icon').offset({left: xPos + 8});
 
     };
 
+     // MICROPHONE FUNCTION ------------------------------
+
+     var showMicrophones = function(){
+
+        var allMics = flash.getMicrophones();
+
+        if(showMic === false && showCam === false){
+
+            for(var i = 0, max = allMics.length; i<max; i++){
+
+                $('li.mic_btn ul.options').append('<li data-id="'+i+'">' + allMics[i] + '</li>');
+
+            }
+
+            showMic = true;
+
+        }else if(showMic === false && showCam === true){
+
+            for(var i = 0, max = allMics.length; i<max; i++){
+
+                $('li.mic_btn ul.options').append('<li data-id="'+i+'">' + allMics[i] + '</li>');
+
+            }
+
+            showMic = true;
+
+            $('li.camera_btn ul.options').empty();
+            showCam = false;
+
+        }else{
+
+            $('li.mic_btn ul.options').empty();
+            showMic = false;
+        };
+
+        $('li.mic_btn ul.options li').on('click', function(){
+
+            selectedMic = $(this).attr('data-id');
+            console.log(selectedMic);
+
+        });
+
+     };
+
+    // CAMERA FUNCTION ------------------------------
+
+    var showCameras = function(){
+
+        var allCameras = flash.getCameras();
+
+        if(showCam === false && showMic === false){
+
+            for(var i = 0, max = allCameras.length; i<max; i++){
+
+                $('li.camera_btn ul.options').append('<li data-id="'+i+'">' + allCameras[i] + '</li>');
+
+            }  
+
+            showCam = true;
+
+        }else if(showCam === false && showMic === true){ 
+
+            for(var i = 0, max = allCameras.length; i<max; i++){
+
+                $('li.camera_btn ul.options').append('<li data-id="'+i+'">' + allCameras[i] + '</li>');
+
+            }  
+
+            showCam = true;
+
+            $('li.mic_btn ul.options').empty();
+            showMic = false;
+
+        }else{
+
+          $('li.camera_btn ul.options').empty();
+          showCam = false;
+
+        };
+
+        $('li.camera_btn ul.options li').on('click', function(){
+
+            selectedCam = $(this).attr('data-id');
+            console.log(selectedCam);
+
+        });
+
+    };
+
+    // CAMERA FUNCTION ------------------------------
+
+    var record = function(){
+
+        if(currentlyRec === false){
+
+            flash.startRecording('testing', selectedCam, selectedMic);
+            currentlyRec = true;
+            $('.rec_btn').empty();
+            $('.rec_btn').append('<img src="images/recording-icon.png">');
+
+        }else{
+
+            flash.stopRecording();
+            $('.rec_btn').empty();
+            $('.rec_btn').append('<img src="images/record-icon.png">');
+            currentlyRec = false;
+
+        };
+
+    };
 
     // var globalError = function(msg)
     // {
@@ -125,13 +321,16 @@ $(function(){
     	};
 
     	if(ghLogin == true){
+
     		ghLogin = false;
     		$('#gh_login').slideToggle(300, function(){
     			$('#fb_login').slideToggle(300);
     		});
 
     	}else{
+
     		$('#fb_login').slideToggle(300);
+
     	};
         
     });

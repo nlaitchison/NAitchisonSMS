@@ -52,12 +52,12 @@ p{
 
 }
 
-a{
+a, #video_controls ul.options li{
 	color: #EB4D4D;
 	text-decoration: none;
 }
 
-a:hover{
+a:hover, #video_controls ul.options li:hover{
 	text-decoration: underline;
 }
 
@@ -194,6 +194,10 @@ textarea.comment_input{
 	padding: 5px 15px 0;
 }
 
+#video_container{
+	position: relative;
+}
+
 .video{
 	width: 590px;
 	height: 332px;
@@ -222,6 +226,28 @@ textarea.comment_input{
 	position: absolute;
     top: 0;
     left: 8px;
+}
+
+ul.options{
+	position: absolute;
+	right: 15px;
+	bottom: 54px; 
+/*	b: 10px;*/
+
+}
+
+#video_controls ul.options li{
+	float: none;
+	right: 0;
+	bottom: 50px;
+	padding: 8px 10px;
+	width: 120px;
+	background-color: rgba(149,230,203,.7);
+	border-bottom: 1px solid #95e6cb;
+}
+
+#video_controls ul.options li:last-child{
+	border-bottom: none;
 }
 
 
