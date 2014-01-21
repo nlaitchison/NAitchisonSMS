@@ -57,7 +57,7 @@ a, #video_controls ul.options li{
 	text-decoration: none;
 }
 
-a:hover, #video_controls ul.options li:hover{
+a:hover, #video_controls ul.options li:hover, .logout:hover{
 	text-decoration: underline;
 }
 
@@ -115,6 +115,10 @@ nav{
 li.pipe{
 	width: 25px;
 	text-align: center;
+	color: #915f52;
+}
+
+li.user{
 	color: #915f52;
 }
 
