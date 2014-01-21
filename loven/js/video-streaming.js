@@ -205,16 +205,15 @@ var playVideo = function(){
         e.preventDefault();
     });
     $('.scrubber_icon').mouseup(function(e){
-        // xpos / width * duration = time
 
-        var currentX = $('.scrubber_icon').css('left');
-        var time = (currentX / width) * dur;
+        var currentX = $('.scrubber_icon').position();
+        var time = (currentX.left / width) * dur;
 
         flash.setTime(time);
 
-
         $('.video_scrubber').off('mousemove');
         scrubbing = false;
+        
     });
 
 };
