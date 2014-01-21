@@ -250,6 +250,18 @@ ul.options{
 	border-bottom: none;
 }
 
+#video_controls ul.volume_level{
+	background-color: rgba(149,230,203,.7);
+	bottom: 50px;
+	position: absolute;
+	padding: 5px 0;
+	display: none;
+}
+
+#video_controls ul.volume_level li{
+	float: none;
+}
+
 
 
 

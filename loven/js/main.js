@@ -5,21 +5,25 @@
     var clickedPlay = false;
 	var initialPlay = false;
 	var currentlyPlaying = false;
-
-    var clickedMic = false;
-    var showMic = false;
-    var clickedCam = false;
-    var showCam = false;
-    var clickedRec = false;
-    var currentlyRec = false;
-
-    var selectedMic = 0;
-    var selectedCam = 0;
-
     var dur = 0;
     var seek = 0;
     var xPos = 0;
     var width = 374;
+
+    var clickedMic = false;
+    var showMic = false;
+    var selectedMic = 0;
+
+    var clickedCam = false;
+    var showCam = false;
+    var selectedCam = 0;
+
+    var clickedRec = false;
+    var currentlyRec = false;
+
+    var clickedVolume = false;
+    var showVolume = false;
+
 	
 	var flashReady = function(){    
 
@@ -73,7 +77,20 @@
                 record();
             };
 
-        });               
+        });    
+
+        $(".volume_btn").on('click', function(){
+
+            clickedVolume = true;
+
+           if(nowConnected === false){
+                flash.connect('rtmp://localhost/SMSServer');  
+            }
+            else{
+                volume();
+            };
+
+        });             
 
     };
 
@@ -101,7 +118,9 @@
 
                 record();
 
-            }
+            }else if(clickedVolume === true){
+                volume();
+            };
             
         };
 
@@ -167,12 +186,20 @@
 
             };
 
+            if(showVolume === true){
+
+                showVolume = false;
+                $('ul.volume_level').css('display', 'none');
+
+            };
+
             console.log('play: ', currentlyPlaying);
 
     };
 
 
     // SCRUBBER FUNCTION ------------------------------
+
 
     var moveScrubber = function(){
 
@@ -182,7 +209,9 @@
 
     };
 
+
      // MICROPHONE FUNCTION ------------------------------
+
 
      var showMicrophones = function(){
 
@@ -217,6 +246,13 @@
             showMic = false;
         };
 
+        if(showVolume === true){
+
+            showVolume = false;
+            $('ul.volume_level').css('display', 'none');
+
+        };
+
         $('li.mic_btn ul.options li').on('click', function(){
 
             selectedMic = $(this).attr('data-id');
@@ -226,7 +262,9 @@
 
      };
 
+
     // CAMERA FUNCTION ------------------------------
+
 
     var showCameras = function(){
 
@@ -262,6 +300,13 @@
 
         };
 
+        if(showVolume === true){
+
+            showVolume = false;
+            $('ul.volume_level').css('display', 'none');
+
+        };
+
         $('li.camera_btn ul.options li').on('click', function(){
 
             selectedCam = $(this).attr('data-id');
@@ -271,7 +316,9 @@
 
     };
 
-    // CAMERA FUNCTION ------------------------------
+
+    // RECORD FUNCTION ------------------------------
+
 
     var record = function(){
 
@@ -293,12 +340,42 @@
 
     };
 
-    // var globalError = function(msg)
-    // {
 
-    //  console.log('msg',msg);
+    // VOLUME FUNCTION ------------------------------
 
-    // };
+
+    var volume = function(){
+
+        if(showVolume === false){
+
+            showVolume = true;
+            $('ul.volume_level').css('display', 'block');
+
+        }else{
+
+            showVolume = false;
+            $('ul.volume_level').css('display', 'none');
+        
+        };
+
+        if(showMic === true){
+
+            $('li.mic_btn ul.options').empty();
+            showMic = false;
+
+        };
+
+        if(showCam === true){
+
+          $('li.camera_btn ul.options').empty();
+          showCam = false;
+
+        };
+    
+    };
+
+
+
 
 
 // MAIN ----------------------------------------------------------------------------------------------------
