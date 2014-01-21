@@ -351,6 +351,35 @@
             showVolume = true;
             $('ul.volume_level').css('display', 'block');
 
+
+            $('ul.volume_level li').click(function() {
+                $('ul.volume_level').empty();
+
+                var num = $(this).attr('id');
+
+                if(num === '1'){
+                    $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-icon.png"></li><li id="2"><img src="images/volume-level-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+                    flash.setVolume(0.2);
+                }else if(num === '2'){
+                    $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+                    flash.setVolume(0.4);
+                }else if(num === '3'){
+                    $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+                    flash.setVolume(0.6);
+                }else if(num === '4'){
+                    $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-selected-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+                    flash.setVolume(0.8);
+                }else if(num === '5'){
+                    $('ul.volume_level').append('<li id="5"><img src="images/volume-level-selected-icon.png"></li><li id="4"><img src="images/volume-level-selected-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+                    flash.setVolume(1);
+                };
+
+                $('ul.volume_level').css('display', 'none');
+                showVolume = false;
+
+            });
+
+
         }else{
 
             showVolume = false;
@@ -432,5 +461,33 @@ $(function(){
     	};     
         
     });
+    
+
+
+
+            // $('ul.volume_level li#1').click(function() {
+            //     $('ul.volume_level').empty();
+            //     $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-icon.png"></li><li id="2"><img src="images/volume-level-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+            // });
+
+            // $('ul.volume_level li#2').click(function() {
+            //     $('ul.volume_level').empty();
+            //     $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+            // });
+
+            // $('ul.volume_level li#3').click(function() {
+            //     $('ul.volume_level').empty();
+            //     $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+            // });
+
+            // $('ul.volume_level li#4').click(function() {
+            //     $('ul.volume_level').empty();
+            //     $('ul.volume_level').append('<li id="5"><img src="images/volume-level-icon.png"></li><li id="4"><img src="images/volume-level-selected-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+            // });
+
+            // $('ul.volume_level li#5').click(function() {
+            //     $('ul.volume_level').empty();
+            //     $('ul.volume_level').append('<li id="5"><img src="images/volume-level-selected-icon.png"></li><li id="4"><img src="images/volume-level-selected-icon.png"></li><li id="3"><img src="images/volume-level-selected-icon.png"></li><li id="2"><img src="images/volume-level-selected-icon.png"></li><li id="1"><img src="images/volume-level-selected-icon.png"></li>');
+            // });
 
 });
