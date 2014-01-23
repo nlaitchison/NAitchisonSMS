@@ -168,6 +168,15 @@ textarea.comment_input{
 	padding-top: 15px; 
 }
 
+.comment ul{
+	font: 0.875em Helvetica;
+	padding: 0 15px 10px;
+}
+
+.comment p.comment_text{
+/*	padding-left: 30px;*/
+}
+
 .comment_border{
 	background-color: #95e6cb;
 	width: 590px;
@@ -175,14 +184,21 @@ textarea.comment_input{
 	margin: 10px 15px 15px;
 }
 
+.comment img{
+	width: 30px;
+	margin-right: 8px;
+}
+
 .comment_user{
 	color: #eb4d4d;
 	font-size: 15px; 
 	padding-right: 5px;
+	line-height: 30px;
 }
 
 .comment_date{
 	font-style: italic;
+	line-height: 30px;
 }
 
 .print_icon{
