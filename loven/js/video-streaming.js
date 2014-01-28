@@ -1,3 +1,6 @@
+// VARIABLES  ------------------------------
+
+
 var nowConnected = false;
 
 var clickedPlay = false;
@@ -23,6 +26,9 @@ var currentlyRec = false;
 
 var clickedVolume = false;
 var showVolume = false;
+
+
+// VIDEO CONTROL CLICK FUNCTIONS  ------------------------------
 
 
 var flashReady = function(){    
@@ -126,11 +132,19 @@ var connected = function(success,error){
 
 }; 
 
+
+// DURATION  ------------------------------
+
+
 var getDuration = function(duration){
 
     dur = duration;
 
 };
+
+
+// SEEK TIME  ------------------------------
+
 
 var seekTime = function(time){
 
@@ -142,7 +156,9 @@ var seekTime = function(time){
 
 };
 
+
 // PLAY FUNCTION ------------------------------
+
 
 var playVideo = function(){
 
@@ -193,8 +209,6 @@ var playVideo = function(){
 
     };
 
-    // console.log('play: ', currentlyPlaying);
-
     $('.scrubber_icon').mousedown(function(e){
         scrubbing = true;
         $('.video_scrubber').mousemove(function(e){
@@ -213,7 +227,7 @@ var playVideo = function(){
 
         $('.video_scrubber').off('mousemove');
         scrubbing = false;
-        
+
     });
 
 };
@@ -424,3 +438,7 @@ var volume = function(){
     };
 
 };
+
+
+
+

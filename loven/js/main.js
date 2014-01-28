@@ -1,12 +1,11 @@
 $(function(){
 
     var userInfo = '';
-
-    // FIREBASE LOGIN  ------------------------------
-
-    // var myDataRef = new Firebase('https://loven.firebaseio.com/');
-
     var chatRef = new Firebase('https://loven.firebaseio.com');
+
+
+    // LOGIN  ------------------------------
+
 
     var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
 
@@ -64,7 +63,11 @@ $(function(){
     };
 
 
+    // COMMENTS  ------------------------------
+
+
     $('.comment_submit').click(function (e) {
+
         var name = userInfo.username;
         var text = $('.comment_input').val();
         var dateTime = getDateTime();
@@ -76,19 +79,24 @@ $(function(){
         }
 
         if (text != '' && userInfo != '') {
-          chatRef.push({name: name, text: text, timeStamp: dateTime, img:img});
-          $('.comment_input').val('');
+            chatRef.push({name: name, text: text, timeStamp: dateTime, img:img});
+            $('.comment_input').val('');
         }
 
       });
 
-      chatRef.on('child_added', function(snapshot) {
+    chatRef.on('child_added', function(snapshot) {
+
         var message = snapshot.val();
         displayChatMessage(message.name, message.text, message.timeStamp, message.img);
-      });
-      function displayChatMessage(name, text, timeStamp, img) {
-         $('#video_comments').append('<div class="comment"><ul><li><img src="'+img+'"></li><li class="comment_user">'+name+'</li><li class="comment_date">'+timeStamp+'</li><div class="clear_fix"></div></ul><p class="comment_text">'+text+'</p><div class="comment_border"></div>');
-      };
+
+    });
+
+    function displayChatMessage(name, text, timeStamp, img) {
+
+        $('#video_comments').append('<div class="comment"><ul><li><img src="'+img+'"></li><li class="comment_user">'+name+'</li><li class="comment_date">'+timeStamp+'</li><div class="clear_fix"></div></ul><p class="comment_text">'+text+'</p><div class="comment_border"></div>');
+    
+    };
 
    var getDateTime = function(dt){
 
@@ -124,8 +132,7 @@ $(function(){
 
         var dateTime = months[curr_month] + " " + curr_date + ", " + curr_year + ' - ' + curr_hour + ':' + curr_min + a_p; 
         return dateTime;
+
     };
-
-
 
 });
